@@ -1,0 +1,44 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+.jumbotron {
+    background-color: #013B17;
+    height: 600px;
+
+}
+#navbar {
+    background-color: #013B17 !important;
+    color: white;
+    float: right;
+}
+
+ #topmenu ul {
+    color: white ;
+    float: right !important;
+    background-color: red;
+}
+
+.jumbotron .container{
+    margin-top: 8%;
+    width: 50%;
+    margin-right: 40%;
+    background-color: red;
+}
+ #searchBox {
+     width: 50%;
+ }
+
+#videoStat {
+    width: 320px !important;
+}

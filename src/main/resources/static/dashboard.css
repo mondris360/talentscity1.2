@@ -1,0 +1,22 @@
+body{
+    background-color: #F7FAFF;
+}
+
+#menu {
+    background-color: #FFFFFF;
+    height: 1000px;
+    width: 20%;
+}
+
+#menu ul li{
+    padding: 20px;
+}
+
+#top-right-menu {
+    float: right;
+
+}
+#top-right-menu li {
+    display: inline-block;
+    list-style: none;
+}

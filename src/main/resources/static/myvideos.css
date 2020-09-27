@@ -1,0 +1,15 @@
+#myvideos {
+    height: 10%;
+    margin-top:-60%;
+    margin-left:25%;
+    position: center;
+    display: flex;
+    text-align: center;
+}
+.container {
+    width: 100%;
+}
+
+#videoStat {
+    width: 320px !important;
+}

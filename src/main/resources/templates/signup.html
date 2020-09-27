@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <link th:href="@{signup.css}" href="signup.css" type=text/css rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>TalentsCity.com - Signup Page</title>
+</head>
+<body>
+        <div id="signUpForm">
+
+            <form th:action="@{/signup}" method="post">
+                <h3>SignUp Form</h3>
+                <div th:if="${error != null}">
+                    <p style="color:white"th:text="${error}"> </p>
+                </div>
+                <input type="text" name="firstName" placeholder="Enter First Name"> <br>
+                <input type="text" name="lastName" placeholder="Enter Last Name"><br>
+                <input type="email" name="email" placeholder="Enter Email Address"><br>
+                <input type="password" name="password" placeholder="Enter Password"><br>
+                <input type="password" name="confirmPass" placeholder="Confirm Password"><br>
+                <input type="submit" value="Submit"><br>
+            </form>
+        </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <link th:href="@{../dashboard.css}" href="dashboard.css" type=text/css rel="stylesheet">
+    <link th:href="@{../myvideos.css}" href="myvideos.css" type=text/css rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>TalentsCity.com - Upload Video</title>
+</head>
+<body>
+<!--top right menu-->
+<div id="top-right-menu">
+    <ul>
+        <li><img src="https://diversityavatars.com/images/asian-woman@700x354.gif" width="100" height="50"></li>
+        <li>Logout</li>
+    </ul>
+</div>
+<div id="menu">
+    <ul>
+        <li><a href="/dashboard/uploadVideo">Upload Video </a></li>
+        <li><a href="/dashboard/myvideoes">My Videos</a></li>
+        <li><a href="/dashboard/myplaylist">My Playlist</a></li>
+        <li><a href="/dashboard/changepass">Change Password</a></li>
+    </ul>
+</div>
+<div id="myvideos">
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div th:each="video : ${myvideos}">
+                <div class="col-md-1">
+                    <video width="320" height="240" controls>
+                        <source th:src="@{${video.getSrcUrl()}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div id="videoStat" class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            Video Title
+                        </div>
+                        <ul class=" list-group list-group-flush">
+                            <li class="list-group-item">Likes : <span th:text="${video.likes.size()}"></span> Dislikes: <span th:text="${video.dislikes.size()}"></span> Views: <span th:text="${video.getTotalViews()}"></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <br> <br>
+            </div>
+        </div>
+
+        <hr>
+    </div> <!-- /container -->
+</div>
+</body>
+</html>

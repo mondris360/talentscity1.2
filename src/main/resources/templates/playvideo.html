@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Welcome To TalentsCity.Com - Play Video</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet"  th:href="@{playvideo.css}" href ="playvideo.css" type="text/css">
+    <link rel="stylesheet" href ="../static/signup.css">
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://kit.fontawesome.com/06e79d0ab6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav id="navbar" class="navbar navbar-expand-md  fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div  class="collapse navbar-collapse" >
+        <ul  class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Football</a>
+                    <a class="dropdown-item" href="#">Dance</a>
+                    <a class="dropdown-item" href="#">Music</a>
+                    <a class="dropdown-item" href="#">Art</a>
+                    <a class="dropdown-item" href="#">Furniture</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login" tabindex="-1" >Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signup" tabindex="-1">SignUp</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload Video</button>
+        </form>
+    </div>
+</nav>
+
+<main role="main">
+        <div  class="searchbox container">
+            <center><div th:if = "${error}">
+                <p style="color: red; margin: 0 auto;" th:text="${error}"> </p>
+            </div>
+            </center>
+           <center><div th:if =${success}>
+                <p style="color: green" th:text="${success}"></p>
+            </div>
+           </center>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <form th:action="@{/search}"  class="card card-sm" method="post">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fas fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search  for video" name="searchWord">
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">
+                                <button class="btn btn-lg btn-success" type="submit">Search</button>
+                            </div>
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
+            </div>
+
+            <hr>
+        </div> <!-- /container -->
+    <div id="suggestedVideoMenu" class="card">
+        <div class="card-header">
+            <span th:text="${menuTitle}" style="color:white; font-size: 30px;"></span>
+        </div>
+        <ul class="list-group list-group-flush">
+            <th:block th:each="playlist : ${videos}">
+                <li class="list-group-item">
+                    <div>
+                        <a th:href="@{/addtoplaylist(videoID=${playlist.getVideoID()})}"><img th:src="@{/defaultvideoPoster.jpg}" width="100" height="70"/></a>
+                    </div>
+                     <div>
+                        <h6 class="card-title" >Video Title: <span th:text="${playlist.getTitle()}"> </span></h6>
+                        <h6 class="card-title" >UploadedBy: <span th:text="${playlist.getUploadedBy()}"> </span></h6>
+                     </div>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+    <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="264"
+            poster="MY_VIDEO_POSTER.jpg"
+            data-setup="{}"
+    >
+        <source th:src="@{${video.getSrcUrl()}}" type="video/mp4" />
+<!--        <source th:src="@{${video.getSrcUrl()}}" type="video/webm" />-->
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a>
+
+        </p>
+    </video>
+    <div class="like-dislike-playlistbtn card-header">
+<!--        <span id="views" ><i class="far fa-eye" th:text="${video.getTotalViews()}">  </i> </span>-->
+        <span id="like"><a th:href="@{/likevideo(videoID=${video.getVideoID()})}"><i class="far fa-thumbs-up" th:text="${video.getLikes().size()}"></i></a></span> <span id="dislike"><a th:href="@{/unlikevideo(videoID=${video.getVideoID()})}"><i class="far fa-thumbs-down" th:text="${video.getDislikes().size()}"></i></a> </span>
+        <span id="playlist">PlayList   <a th:href="@{/addtoplaylist(videoID=${video.getVideoID()})}"><i class="fas fa-plus"></i></a><span><a th:href="@{/viewplaylist(videoID=${video.getVideoID()})}"><i class="far fa-eye"></i></a> </span></span>
+    </div>
+</main> 
+
+
+<div class="videodescription card" >
+    <div class="card-body">
+        <h5 class="card-title" >Video Title: <span th:text="${video.getTitle()}"> </span></h5>
+        <h6 class="card-title" >Uploaded By: <span th:text="${video.getUploadedBy()}"> </span></h6>
+        <h6 class="card-title" >Date <span th:text="${video.getDateUploaded()}"> </span></h6>
+        <h6 class="card-subtitle mb-2 text-muted">Video Description</h6>
+        <p class="card-text" th:text="${video.getDescription()}"></p>
+    </div>
+</div>
+<footer class="container">
+    <p>&copy; Company 2017-2020</p>
+</footer>
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <link th:href="@{../dashboard.css}" href="dashboard.css" type=text/css rel="stylesheet">
+    <link th:href="@{../uploadvideos.css}" href="uploadvideos.css" type=text/css rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>TalentsCity.com - Upload Video</title>
+</head>
+<body>
+<!--top right menu-->
+<div id="top-right-menu">
+    <ul>
+        <li><img src="https://diversityavatars.com/images/asian-woman@700x354.gif" width="100" height="50"></li>
+        <li>Logout</li>
+    </ul>
+</div>
+<div id="menu">
+    <ul>
+        <li><a href="/dashboard/uploadVideo">Upload Video </a></li>
+        <li><a href="/dashboard/myvideoes">My Videos</a></li>
+        <li><a href="/dashboard/myplaylist">My Playlist</a></li>
+        <li><a href="/dashboard/changepass">Change Password</a></li>
+    </ul>
+</div>
+<div id="uploadVideo">
+
+    <form th:action="@{/dashboard/uploadVideo}" method="post" enctype="multipart/form-data">
+        <h3>Upload A Video</h3>
+        <div th:if="${error != null}">
+            <p style="color: #F7FAFF" th:text= "${error}"></p>
+        </div>
+<!--        <div th:if="${error != null}">-->
+<!--            <p style="color:white"th:text="${error}"> </p>-->
+<!--        </div>-->
+        <input type="text" name="title" placeholder="Enter Video Title"><br>
+        <input type="file" name="videoFile" placeholder="Upload A Video"><br>
+        <select name="category">
+            <option>Select Category</option>
+            <option value="football">Football </option>
+            <option value="music">Music</option>
+            <option value="dance">Dance</option>
+            <option value="art">Art</option>
+            <option value="others">Others</option>
+        </select>
+        <textarea name="description"  placeholder="Enter video Description" maxlength="1000"> </textarea>
+        <input type="submit" value="Upload"><br>
+    </form>
+</div>
+</body>
+</html>
