@@ -1,15 +1,8 @@
 package com.talentscity.com.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name ="comments")
 public class Comment {
@@ -30,5 +23,15 @@ public class Comment {
 
     private Timestamp date =  new Timestamp(System.currentTimeMillis());
 
+    public Comment(Long commentID, User user, String comment, Video video) {
+        this.commentID = commentID;
+        this.user = user;
+        this.comment = comment;
+        this.video = video;
+    }
 
+
+    public Comment() {
+
+    }
 }

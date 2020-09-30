@@ -9,9 +9,6 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name= "likes")
 public class Like {
     @Id
@@ -33,6 +30,47 @@ public class Like {
         this.video = video;
     }
 
+    public Like() {}
+
+
     private Timestamp date  = new Timestamp(System.currentTimeMillis());
 
+    public Like(Long likeID, User user, Video video) {
+        this.likeID = likeID;
+        this.user = user;
+        this.video = video;
+    }
+
+
+    public Long getLikeID() {
+        return likeID;
+    }
+
+    public void setLikeID(Long likeID) {
+        this.likeID = likeID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
 }

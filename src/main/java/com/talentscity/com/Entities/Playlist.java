@@ -1,17 +1,10 @@
 package com.talentscity.com.Entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="playlist")
 public class Playlist {
 
@@ -35,5 +28,47 @@ public class Playlist {
      public Playlist(User user, Video video) {
           this.user = user;
           this.video = video;
+     }
+
+     public Playlist(Long playlistID, User user, Video video) {
+          this.playlistID = playlistID;
+          this.user = user;
+          this.video = video;
+     }
+
+     public Playlist() {
+
+     }
+
+     public Long getPlaylistID() {
+          return playlistID;
+     }
+
+     public void setPlaylistID(Long playlistID) {
+          this.playlistID = playlistID;
+     }
+
+     public User getUser() {
+          return user;
+     }
+
+     public void setUser(User user) {
+          this.user = user;
+     }
+
+     public Video getVideo() {
+          return video;
+     }
+
+     public void setVideo(Video video) {
+          this.video = video;
+     }
+
+     public Timestamp getDateAdded() {
+          return dateAdded;
+     }
+
+     public void setDateAdded(Timestamp dateAdded) {
+          this.dateAdded = dateAdded;
      }
 }

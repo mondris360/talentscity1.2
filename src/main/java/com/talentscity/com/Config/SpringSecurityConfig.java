@@ -1,4 +1,4 @@
-package com.talentscity.com.SpringSecurityConfig;
+package com.talentscity.com.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +15,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/dashboard/**").authenticated()
                 .antMatchers("/").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .oauth2Login()
                 .loginPage("/login")
@@ -25,6 +26,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/dashboard")
                 .failureUrl("/login");
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
     }
     // password enconder

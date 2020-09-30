@@ -1,17 +1,11 @@
 package com.talentscity.com.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "Categories")
 public class Category {
 
@@ -29,4 +23,14 @@ public class Category {
     @JoinColumn(name="videoID")
     private List<Video> video;
 
+
+    public Category(Long categoryID, String name, int totalViews, List<Video> video) {
+        this.categoryID = categoryID;
+        this.name = name;
+        this.totalViews = totalViews;
+        this.video = video;
+    }
+
+    public Category() {
+    }
 }

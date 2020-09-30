@@ -15,9 +15,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="users")
 // users table
 public class User implements UserDetails {
@@ -35,6 +32,9 @@ public class User implements UserDetails {
     private Timestamp dateCreated =  new Timestamp(System.currentTimeMillis());
     private Timestamp lastLogin =  new Timestamp(System.currentTimeMillis());
 
+
+
+
     // method to create a new user
     public User(String firstName, String lastName, String email, String password){
         this.firstName = firstName;
@@ -49,6 +49,11 @@ public class User implements UserDetails {
         List<GrantedAuthority> roles  = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(this.getRole()));
         return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
     @Override
@@ -74,5 +79,73 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public BigInteger getUserID() {
+        return userID;
+    }
+
+    public void setUserID(BigInteger userID) {
+        this.userID = userID;
+    }
+
+    public String getOauthUserId() {
+        return oauthUserId;
+    }
+
+    public void setOauthUserId(String oauthUserId) {
+        this.oauthUserId = oauthUserId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(String role) {
+        Role = role;
+    }
+
+    public Timestamp getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Timestamp dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Timestamp getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Timestamp lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }

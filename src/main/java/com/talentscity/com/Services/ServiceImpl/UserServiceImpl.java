@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     // method to create a new user
     public User createUser(User user) {
         // check if the user already exists
-        User getUser =  userRepository.findUserByEmail(user.getEmail());
+        User getUser =  userRepository.findUserByEmail(user.getUsername());
         // if the user already exists
         if (getUser != null){
             return null;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     // method to valid user login
     public User login(User user) {
-        User getUser =  userRepository.findUserByEmail(user.getEmail());
+        User getUser =  userRepository.findUserByEmail(user.getUsername());
         if (getUser == null){
             return null;
         }

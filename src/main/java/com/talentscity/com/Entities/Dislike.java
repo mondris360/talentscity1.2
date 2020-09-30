@@ -7,11 +7,16 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "dislikes")
 public class Dislike {
+
+    public Dislike(Long id, User user, Video video, Timestamp date) {
+        this.id = id;
+        this.user = user;
+        this.video = video;
+        this.date = date;
+    }
+    public  Dislike(){}
 
     @Id
     @GeneratedValue
@@ -34,4 +39,35 @@ public class Dislike {
 
     private Timestamp date =  new Timestamp(System.currentTimeMillis());
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
 }
