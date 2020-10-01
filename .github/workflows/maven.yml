@@ -40,20 +40,18 @@ jobs:
     name: Run mvn build and generate coverage report
     needs: test
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 14
-        uses: actions/setup-java@v1
-        with:
-          java-version: 0.1
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
-      - name: generate report codecov
-      
-        env:
-         FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
-         FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
-         GOOGLE_CLIENT_ID:  ${{ secrets.GOOGLE_CLIENT_ID }}
-         GOOGLE_CLIENT_SECRET:  ${{ secrets.GOOGLE_CLIENT_SECRET }}
-         TALENTSCITYDB_NAME:   ${{ secrets.TALENTSCITYDB_NAME }}
-         TALENTSCITYDB_PASSWORD: ${{ secrets.TALENTSCITYDB_PASSWORD }}
-         TALENTSCITYDB_USERNAME:   ${{ secrets.TALENTSCITYDB_USERNAME }}
+        - name: Setup Java JDK
+          uses: actions/setup-java@v1.4.3
+          with:
+           java-version: 0.1
+        - name: Build with Maven
+          run: mvn -B package --file pom.xml -Dmaven.test.skip=true
+            
+          env:
+            FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
+            FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
+            GOOGLE_CLIENT_ID:  ${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET:  ${{ secrets.GOOGLE_CLIENT_SECRET }}
+            TALENTSCITYDB_NAME:   ${{ secrets.TALENTSCITYDB_NAME }}
+            TALENTSCITYDB_PASSWORD: ${{ secrets.TALENTSCITYDB_PASSWORD }}
+            TALENTSCITYDB_USERNAME:   ${{ secrets.TALENTSCITYDB_USERNAME }}
