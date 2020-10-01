@@ -45,7 +45,7 @@ jobs:
           with:
            java-version: 14
         - name: Build with Maven
-          run: mvn -B package
+          run: mvn clean --file *.pom 
             
           env:
             FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
